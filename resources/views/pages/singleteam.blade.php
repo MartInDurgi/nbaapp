@@ -8,7 +8,7 @@
     <h1>{{ $team->name }}</h1>
 
     @foreach ($team->players as $player)
-        <small>Player name: {{ $player->first_name . ' ' . $player->last_name }}</small>
+        <a href=""> <small>Player name: {{ $player->first_name . ' ' . $player->last_name }}</small></a>
     @endforeach
 
 
