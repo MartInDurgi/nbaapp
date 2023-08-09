@@ -17,7 +17,10 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         return [
-            
+            'name' => fake()->word(),
+            'email' => fake()->email(),
+            'adress' => fake()->address(),
+            'city' => fake()->city(),
         ];
     }
 }

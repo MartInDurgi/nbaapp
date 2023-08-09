@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Team;
+use App\Models\Player;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TeamsSeeder extends Seeder
+class PlayersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Team::factory(10)->create();
+        Player::factory(100)->create();
     }
 }
