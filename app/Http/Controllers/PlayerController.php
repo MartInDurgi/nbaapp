@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Player;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -11,7 +13,6 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -27,7 +28,9 @@ class PlayerController extends Controller
      */
     public function show(string $id)
     {
-        
+        $player = Player::find($id);
+        $player->team = Team::find($player->team_id);
+        return view('pages.singleplayer', compact('player'));
     }
 
     /**
