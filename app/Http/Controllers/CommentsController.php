@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Player;
-use App\Models\Team;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class PlayerController extends Controller
+class CommentsController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('isAuth');
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        //
     }
 
     /**
@@ -25,7 +21,18 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'content' => 'required|min:5|max:5000|string',
+            'team_id' => 'required|exists:teams,id'
+        ]);
+
+        Comment::create([
+            'content' => $request->content,
+            'team_id' => $request->team_id,
+            'user_id' => Auth::user()->id
+        ]);
+
+        return redirect('/teams/' . $request->team_id)->with('status', 'Comment successfully created.');
     }
 
     /**
@@ -33,9 +40,7 @@ class PlayerController extends Controller
      */
     public function show(string $id)
     {
-        $player = Player::find($id);
-        $player->team = Team::find($player->team_id);
-        return view('pages.singleplayer', compact('player'));
+        //
     }
 
     /**

@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('isAuth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +38,7 @@ class TeamController extends Controller
     {
         $team = Team::find($id);
         $players = Player::where('team_id', $team->id)->paginate(6);
-        //$post->comments = Comment::where('post_id', $id)->paginate(2);
+        $team->comments = Comment::where('team_id', $id)->paginate(2);
         return view('pages.singleteam', compact('team'), compact('players'));
     }
 

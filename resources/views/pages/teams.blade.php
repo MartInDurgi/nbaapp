@@ -15,5 +15,6 @@
             </div>
             {{ $teams }}
         </div>
+        @include('components.status')
     </div>
 @endsection

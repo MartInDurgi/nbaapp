@@ -55,8 +55,8 @@
     @endforeach --}}
 
 
-    {{--  @include('components.tags')
+    {{--  @include('components.tags') --}}
 
     @include('components.createcomment')
-    @include('components.comments') --}}
+    @include('components.comments')
 @endsection
