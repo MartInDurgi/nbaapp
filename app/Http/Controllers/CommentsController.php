@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('badWord')->only('store');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -23,13 +28,13 @@ class CommentsController extends Controller
     {
         $request->validate([
             'content' => 'required|min:5|max:5000|string',
-            'team_id' => 'required|exists:teams,id'
+            'team_id' => 'required|exists:teams,id',
         ]);
 
         Comment::create([
             'content' => $request->content,
             'team_id' => $request->team_id,
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect('/teams/' . $request->team_id)->with('status', 'Comment successfully created.');
@@ -38,9 +43,9 @@ class CommentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        return view('pages.forbidden-comment', compact('needle'));
     }
 
     /**

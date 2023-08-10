@@ -7,9 +7,9 @@ use App\Models\Player;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
+
 class TeamController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('isAuth');
