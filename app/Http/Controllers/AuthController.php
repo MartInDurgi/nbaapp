@@ -78,6 +78,7 @@ class AuthController extends Controller
     {
         $user = User::find($id);
         $user->email_verified_at = now();
-        return redirect('/')->with('status', 'email verified');
+        $user->save();
+        return redirect('/login')->with('status', 'email verified please log in');
     }
 }

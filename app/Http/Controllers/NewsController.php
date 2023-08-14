@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Player;
-use App\Models\Team;
+use App\Models\News;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class TeamController extends Controller
+class NewsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('isAuth');
+        $this->middleware('badWord')->only('store');
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $teams = Team::paginate(6);
-        return view('pages.teams', compact('teams'));
+        $news = News::paginate(6);
+        //$user = User::where('id', $news->);
+        return view('pages.news', compact('news'));
     }
 
     /**
@@ -35,10 +36,10 @@ class TeamController extends Controller
      */
     public function show(string $id)
     {
-        $team = Team::find($id);
-        $players = Player::where('team_id', $team->id)->paginate(6);
-        $team->comments = Comment::where('team_id', $id)->get();
-        return view('pages.singleteam', compact('team'), compact('players'));
+        $post = News::find($id);
+        // $players = News::where('team_id', $team->id)->paginate(6);
+        //$team->comments = Comment::where('team_id', $id)->get();
+        return view('pages.singlenews', compact('post'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,9 @@ Route::post('/createcomment', [CommentsController::class, 'store'])->middleware(
 
 Route::get('/forbidden', [CommentsController::class, 'show']);
 Route::get('/verify_email/{id}', [AuthController::class, 'validation']);
+
+Route::get('/news', [NewsController::class, 'index']);
+Route::get('/news/{id}', [NewsController::class, 'show']);
 
 //
 

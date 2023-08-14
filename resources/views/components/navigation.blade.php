@@ -13,6 +13,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Teams</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/news">News</a>
+                </li>
                 @if (!auth()->user())
                     <li class="nav-item">
                         <a class="nav-link" href="/register">Register</a>
